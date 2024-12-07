@@ -1,0 +1,6 @@
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/mos6502.dir
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/memory.dir
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/bit_manip.dir
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/emulator.dir
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/edit_cache.dir
+/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles/rebuild_cache.dir

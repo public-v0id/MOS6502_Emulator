@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbit_manip.a CMakeFiles/bit_manip.dir/src/memory.cpp.o
+/usr/bin/ranlib libbit_manip.a

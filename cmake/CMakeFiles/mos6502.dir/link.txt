@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmos6502.a CMakeFiles/mos6502.dir/src/mos6502.cpp.o
+/usr/bin/ranlib libmos6502.a

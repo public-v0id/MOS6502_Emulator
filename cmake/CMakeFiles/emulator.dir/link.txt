@@ -1,0 +1,1 @@
+/usr/lib64/ccache/c++ -rdynamic CMakeFiles/emulator.dir/src/emulator.cpp.o -o emulator  libmos6502.a libmemory.a libbit_manip.a
