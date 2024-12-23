@@ -69,28 +69,28 @@ include CMakeFiles/bit_manip.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/bit_manip.dir/flags.make
 
-CMakeFiles/bit_manip.dir/src/memory.cpp.o: CMakeFiles/bit_manip.dir/flags.make
-CMakeFiles/bit_manip.dir/src/memory.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp
-CMakeFiles/bit_manip.dir/src/memory.cpp.o: CMakeFiles/bit_manip.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bit_manip.dir/src/memory.cpp.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bit_manip.dir/src/memory.cpp.o -MF CMakeFiles/bit_manip.dir/src/memory.cpp.o.d -o CMakeFiles/bit_manip.dir/src/memory.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp
+CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o: CMakeFiles/bit_manip.dir/flags.make
+CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp
+CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o: CMakeFiles/bit_manip.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o -MF CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o.d -o CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp
 
-CMakeFiles/bit_manip.dir/src/memory.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bit_manip.dir/src/memory.cpp.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp > CMakeFiles/bit_manip.dir/src/memory.cpp.i
+CMakeFiles/bit_manip.dir/src/bit_manip.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bit_manip.dir/src/bit_manip.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp > CMakeFiles/bit_manip.dir/src/bit_manip.cpp.i
 
-CMakeFiles/bit_manip.dir/src/memory.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bit_manip.dir/src/memory.cpp.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp -o CMakeFiles/bit_manip.dir/src/memory.cpp.s
+CMakeFiles/bit_manip.dir/src/bit_manip.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bit_manip.dir/src/bit_manip.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp -o CMakeFiles/bit_manip.dir/src/bit_manip.cpp.s
 
 # Object files for target bit_manip
 bit_manip_OBJECTS = \
-"CMakeFiles/bit_manip.dir/src/memory.cpp.o"
+"CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o"
 
 # External object files for target bit_manip
 bit_manip_EXTERNAL_OBJECTS =
 
-libbit_manip.a: CMakeFiles/bit_manip.dir/src/memory.cpp.o
+libbit_manip.a: CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o
 libbit_manip.a: CMakeFiles/bit_manip.dir/build.make
 libbit_manip.a: CMakeFiles/bit_manip.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libbit_manip.a"

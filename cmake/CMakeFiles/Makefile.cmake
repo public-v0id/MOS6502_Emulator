@@ -44,8 +44,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/mos6502.dir/DependInfo.cmake"
-  "CMakeFiles/memory.dir/DependInfo.cmake"
-  "CMakeFiles/bit_manip.dir/DependInfo.cmake"
   "CMakeFiles/emulator.dir/DependInfo.cmake"
   )

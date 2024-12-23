@@ -2,14 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(mos6502_emulator)
 
-set(SOURCE_EXE src/emulator.cpp)
+set(SOURCES src/emulator.cpp src/mos6502.cpp src/operations.cpp src/memory.cpp src/bit_manip.cpp src/hex.cpp)
 
-add_library(mos6502 STATIC src/mos6502.cpp)
+add_executable(emulator ${SOURCES})
 
-add_library(memory STATIC src/memory.cpp)
-
-add_library(bit_manip STATIC src/memory.cpp)
-
-add_executable(emulator ${SOURCE_EXE})
-
-target_link_libraries(emulator mos6502 memory bit_manip)
+target_include_directories(emulator PRIVATE ${CMAKE_SOURCE_DIR}/include)

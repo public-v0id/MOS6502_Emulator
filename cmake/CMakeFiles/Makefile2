@@ -63,9 +63,6 @@ CMAKE_BINARY_DIR = /home/Petrign/Проги/CPP/mos6502_emulator/cmake
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/mos6502.dir/all
-all: CMakeFiles/memory.dir/all
-all: CMakeFiles/bit_manip.dir/all
 all: CMakeFiles/emulator.dir/all
 .PHONY : all
 
@@ -74,105 +71,22 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/mos6502.dir/clean
-clean: CMakeFiles/memory.dir/clean
-clean: CMakeFiles/bit_manip.dir/clean
 clean: CMakeFiles/emulator.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/mos6502.dir
-
-# All Build rule for target.
-CMakeFiles/mos6502.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=7,8 "Built target mos6502"
-.PHONY : CMakeFiles/mos6502.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/mos6502.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mos6502.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 0
-.PHONY : CMakeFiles/mos6502.dir/rule
-
-# Convenience name for target.
-mos6502: CMakeFiles/mos6502.dir/rule
-.PHONY : mos6502
-
-# clean rule for target.
-CMakeFiles/mos6502.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/clean
-.PHONY : CMakeFiles/mos6502.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/memory.dir
-
-# All Build rule for target.
-CMakeFiles/memory.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=5,6 "Built target memory"
-.PHONY : CMakeFiles/memory.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/memory.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/memory.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 0
-.PHONY : CMakeFiles/memory.dir/rule
-
-# Convenience name for target.
-memory: CMakeFiles/memory.dir/rule
-.PHONY : memory
-
-# clean rule for target.
-CMakeFiles/memory.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/clean
-.PHONY : CMakeFiles/memory.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/bit_manip.dir
-
-# All Build rule for target.
-CMakeFiles/bit_manip.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=1,2 "Built target bit_manip"
-.PHONY : CMakeFiles/bit_manip.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/bit_manip.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/bit_manip.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 0
-.PHONY : CMakeFiles/bit_manip.dir/rule
-
-# Convenience name for target.
-bit_manip: CMakeFiles/bit_manip.dir/rule
-.PHONY : bit_manip
-
-# clean rule for target.
-CMakeFiles/bit_manip.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/clean
-.PHONY : CMakeFiles/bit_manip.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/emulator.dir
 
 # All Build rule for target.
-CMakeFiles/emulator.dir/all: CMakeFiles/mos6502.dir/all
-CMakeFiles/emulator.dir/all: CMakeFiles/memory.dir/all
-CMakeFiles/emulator.dir/all: CMakeFiles/bit_manip.dir/all
+CMakeFiles/emulator.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=3,4 "Built target emulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target emulator"
 .PHONY : CMakeFiles/emulator.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/emulator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/emulator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles 0
 .PHONY : CMakeFiles/emulator.dir/rule

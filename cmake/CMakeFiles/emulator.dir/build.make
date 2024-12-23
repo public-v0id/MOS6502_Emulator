@@ -83,20 +83,97 @@ CMakeFiles/emulator.dir/src/emulator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/emulator.cpp.s"
 	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/emulator.cpp -o CMakeFiles/emulator.dir/src/emulator.cpp.s
 
+CMakeFiles/emulator.dir/src/mos6502.cpp.o: CMakeFiles/emulator.dir/flags.make
+CMakeFiles/emulator.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/mos6502.cpp
+CMakeFiles/emulator.dir/src/mos6502.cpp.o: CMakeFiles/emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/emulator.dir/src/mos6502.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emulator.dir/src/mos6502.cpp.o -MF CMakeFiles/emulator.dir/src/mos6502.cpp.o.d -o CMakeFiles/emulator.dir/src/mos6502.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/mos6502.cpp
+
+CMakeFiles/emulator.dir/src/mos6502.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/emulator.dir/src/mos6502.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/mos6502.cpp > CMakeFiles/emulator.dir/src/mos6502.cpp.i
+
+CMakeFiles/emulator.dir/src/mos6502.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/mos6502.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/mos6502.cpp -o CMakeFiles/emulator.dir/src/mos6502.cpp.s
+
+CMakeFiles/emulator.dir/src/operations.cpp.o: CMakeFiles/emulator.dir/flags.make
+CMakeFiles/emulator.dir/src/operations.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp
+CMakeFiles/emulator.dir/src/operations.cpp.o: CMakeFiles/emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/emulator.dir/src/operations.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emulator.dir/src/operations.cpp.o -MF CMakeFiles/emulator.dir/src/operations.cpp.o.d -o CMakeFiles/emulator.dir/src/operations.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp
+
+CMakeFiles/emulator.dir/src/operations.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/emulator.dir/src/operations.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp > CMakeFiles/emulator.dir/src/operations.cpp.i
+
+CMakeFiles/emulator.dir/src/operations.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/operations.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp -o CMakeFiles/emulator.dir/src/operations.cpp.s
+
+CMakeFiles/emulator.dir/src/memory.cpp.o: CMakeFiles/emulator.dir/flags.make
+CMakeFiles/emulator.dir/src/memory.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp
+CMakeFiles/emulator.dir/src/memory.cpp.o: CMakeFiles/emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/emulator.dir/src/memory.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emulator.dir/src/memory.cpp.o -MF CMakeFiles/emulator.dir/src/memory.cpp.o.d -o CMakeFiles/emulator.dir/src/memory.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp
+
+CMakeFiles/emulator.dir/src/memory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/emulator.dir/src/memory.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp > CMakeFiles/emulator.dir/src/memory.cpp.i
+
+CMakeFiles/emulator.dir/src/memory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/memory.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp -o CMakeFiles/emulator.dir/src/memory.cpp.s
+
+CMakeFiles/emulator.dir/src/bit_manip.cpp.o: CMakeFiles/emulator.dir/flags.make
+CMakeFiles/emulator.dir/src/bit_manip.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp
+CMakeFiles/emulator.dir/src/bit_manip.cpp.o: CMakeFiles/emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/emulator.dir/src/bit_manip.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emulator.dir/src/bit_manip.cpp.o -MF CMakeFiles/emulator.dir/src/bit_manip.cpp.o.d -o CMakeFiles/emulator.dir/src/bit_manip.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp
+
+CMakeFiles/emulator.dir/src/bit_manip.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/emulator.dir/src/bit_manip.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp > CMakeFiles/emulator.dir/src/bit_manip.cpp.i
+
+CMakeFiles/emulator.dir/src/bit_manip.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/bit_manip.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp -o CMakeFiles/emulator.dir/src/bit_manip.cpp.s
+
+CMakeFiles/emulator.dir/src/hex.cpp.o: CMakeFiles/emulator.dir/flags.make
+CMakeFiles/emulator.dir/src/hex.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/hex.cpp
+CMakeFiles/emulator.dir/src/hex.cpp.o: CMakeFiles/emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/emulator.dir/src/hex.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emulator.dir/src/hex.cpp.o -MF CMakeFiles/emulator.dir/src/hex.cpp.o.d -o CMakeFiles/emulator.dir/src/hex.cpp.o -c /home/Petrign/Проги/CPP/mos6502_emulator/src/hex.cpp
+
+CMakeFiles/emulator.dir/src/hex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/emulator.dir/src/hex.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Petrign/Проги/CPP/mos6502_emulator/src/hex.cpp > CMakeFiles/emulator.dir/src/hex.cpp.i
+
+CMakeFiles/emulator.dir/src/hex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/emulator.dir/src/hex.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Petrign/Проги/CPP/mos6502_emulator/src/hex.cpp -o CMakeFiles/emulator.dir/src/hex.cpp.s
+
 # Object files for target emulator
 emulator_OBJECTS = \
-"CMakeFiles/emulator.dir/src/emulator.cpp.o"
+"CMakeFiles/emulator.dir/src/emulator.cpp.o" \
+"CMakeFiles/emulator.dir/src/mos6502.cpp.o" \
+"CMakeFiles/emulator.dir/src/operations.cpp.o" \
+"CMakeFiles/emulator.dir/src/memory.cpp.o" \
+"CMakeFiles/emulator.dir/src/bit_manip.cpp.o" \
+"CMakeFiles/emulator.dir/src/hex.cpp.o"
 
 # External object files for target emulator
 emulator_EXTERNAL_OBJECTS =
 
 emulator: CMakeFiles/emulator.dir/src/emulator.cpp.o
+emulator: CMakeFiles/emulator.dir/src/mos6502.cpp.o
+emulator: CMakeFiles/emulator.dir/src/operations.cpp.o
+emulator: CMakeFiles/emulator.dir/src/memory.cpp.o
+emulator: CMakeFiles/emulator.dir/src/bit_manip.cpp.o
+emulator: CMakeFiles/emulator.dir/src/hex.cpp.o
 emulator: CMakeFiles/emulator.dir/build.make
-emulator: libmos6502.a
-emulator: libmemory.a
-emulator: libbit_manip.a
 emulator: CMakeFiles/emulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable emulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Petrign/Проги/CPP/mos6502_emulator/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable emulator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/emulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

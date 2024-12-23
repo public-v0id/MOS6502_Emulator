@@ -8,7 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp" "CMakeFiles/emulator.dir/src/bit_manip.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/bit_manip.cpp.o.d"
   "/home/Petrign/Проги/CPP/mos6502_emulator/src/emulator.cpp" "CMakeFiles/emulator.dir/src/emulator.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/emulator.cpp.o.d"
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/hex.cpp" "CMakeFiles/emulator.dir/src/hex.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/hex.cpp.o.d"
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp" "CMakeFiles/emulator.dir/src/memory.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/memory.cpp.o.d"
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/mos6502.cpp" "CMakeFiles/emulator.dir/src/mos6502.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/mos6502.cpp.o.d"
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp" "CMakeFiles/emulator.dir/src/operations.cpp.o" "gcc" "CMakeFiles/emulator.dir/src/operations.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -79,6 +79,7 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
   /usr/include/c++/14/bits/basic_string.tcc \
   /usr/include/c++/14/bits/char_traits.h \
   /usr/include/c++/14/bits/charconv.h \
+  /usr/include/c++/14/bits/codecvt.h \
   /usr/include/c++/14/bits/concept_check.h \
   /usr/include/c++/14/bits/cpp_type_traits.h \
   /usr/include/c++/14/bits/cxxabi_forced.h \
@@ -86,6 +87,7 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
   /usr/include/c++/14/bits/exception.h \
   /usr/include/c++/14/bits/exception_defines.h \
   /usr/include/c++/14/bits/exception_ptr.h \
+  /usr/include/c++/14/bits/fstream.tcc \
   /usr/include/c++/14/bits/functexcept.h \
   /usr/include/c++/14/bits/functional_hash.h \
   /usr/include/c++/14/bits/hash_bytes.h \
@@ -144,6 +146,7 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
   /usr/include/c++/14/ext/numeric_traits.h \
   /usr/include/c++/14/ext/string_conversions.h \
   /usr/include/c++/14/ext/type_traits.h \
+  /usr/include/c++/14/fstream \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/ios \
   /usr/include/c++/14/iosfwd \
@@ -161,8 +164,10 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/x86_64-redhat-linux/bits/atomic_word.h \
+  /usr/include/c++/14/x86_64-redhat-linux/bits/basic_file.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/c++allocator.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
+  /usr/include/c++/14/x86_64-redhat-linux/bits/c++io.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/c++locale.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/cpu_defines.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/ctype_base.h \
@@ -274,6 +279,8 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 
 /usr/include/c++/14/cstdint:
 
+/usr/include/c++/14/cerrno:
+
 /usr/include/bits/types/time_t.h:
 
 /usr/include/bits/wchar.h:
@@ -366,6 +373,10 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 
 /usr/include/bits/uintn-identity.h:
 
+/usr/include/c++/14/cctype:
+
+/usr/include/c++/14/bits/exception.h:
+
 /usr/include/bits/long-double.h:
 
 /usr/include/bits/types/struct___jmp_buf_tag.h:
@@ -389,10 +400,6 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 /usr/include/bits/types/struct_tm.h:
 
 /usr/include/c++/14/bits/string_view.tcc:
-
-/usr/include/c++/14/bits/exception.h:
-
-/usr/include/c++/14/cctype:
 
 /usr/include/c++/14/exception:
 
@@ -441,6 +448,8 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 /usr/include/bits/types/mbstate_t.h:
 
 /usr/include/bits/floatn-common.h:
+
+/usr/include/c++/14/fstream:
 
 /home/Petrign/Проги/CPP/mos6502_emulator/include/mos6502.h:
 
@@ -528,13 +537,21 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 
 /usr/include/c++/14/bits/basic_string.tcc:
 
+/usr/include/c++/14/bits/codecvt.h:
+
+/usr/include/c++/14/bits/istream.tcc:
+
 /usr/include/pthread.h:
 
 /usr/include/c++/14/bits/functexcept.h:
 
+/usr/include/c++/14/x86_64-redhat-linux/bits/c++io.h:
+
 /usr/include/c++/14/bits/concept_check.h:
 
 /usr/include/c++/14/bits/cpp_type_traits.h:
+
+/usr/include/c++/14/bits/fstream.tcc:
 
 /usr/include/c++/14/bits/char_traits.h:
 
@@ -544,8 +561,6 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 
 /usr/include/c++/14/bits/ios_base.h:
 
-/usr/include/c++/14/bits/istream.tcc:
-
 /usr/include/c++/14/bits/locale_classes.tcc:
 
 /usr/include/bits/types/sigset_t.h:
@@ -553,6 +568,8 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 /usr/include/c++/14/bits/move.h:
 
 /usr/include/c++/14/bits/utility.h:
+
+/usr/include/c++/14/x86_64-redhat-linux/bits/basic_file.h:
 
 /usr/include/c++/14/ios:
 
@@ -585,5 +602,3 @@ CMakeFiles/mos6502.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_e
 /usr/include/c++/14/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/14/bits/version.h:
-
-/usr/include/c++/14/cerrno:

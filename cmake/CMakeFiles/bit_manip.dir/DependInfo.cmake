@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp" "CMakeFiles/bit_manip.dir/src/memory.cpp.o" "gcc" "CMakeFiles/bit_manip.dir/src/memory.cpp.o.d"
+  "/home/Petrign/Проги/CPP/mos6502_emulator/src/bit_manip.cpp" "CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o" "gcc" "CMakeFiles/bit_manip.dir/src/bit_manip.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -117,45 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mos6502
-
-# Build rule for target.
-mos6502: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mos6502
-.PHONY : mos6502
-
-# fast build rule for target.
-mos6502/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/build
-.PHONY : mos6502/fast
-
-#=============================================================================
-# Target rules for targets named memory
-
-# Build rule for target.
-memory: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 memory
-.PHONY : memory
-
-# fast build rule for target.
-memory/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/build
-.PHONY : memory/fast
-
-#=============================================================================
-# Target rules for targets named bit_manip
-
-# Build rule for target.
-bit_manip: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bit_manip
-.PHONY : bit_manip
-
-# fast build rule for target.
-bit_manip/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/build
-.PHONY : bit_manip/fast
-
-#=============================================================================
 # Target rules for targets named emulator
 
 # Build rule for target.
@@ -167,6 +128,30 @@ emulator: cmake_check_build_system
 emulator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/build
 .PHONY : emulator/fast
+
+src/bit_manip.o: src/bit_manip.cpp.o
+.PHONY : src/bit_manip.o
+
+# target to build an object file
+src/bit_manip.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/bit_manip.cpp.o
+.PHONY : src/bit_manip.cpp.o
+
+src/bit_manip.i: src/bit_manip.cpp.i
+.PHONY : src/bit_manip.i
+
+# target to preprocess a source file
+src/bit_manip.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/bit_manip.cpp.i
+.PHONY : src/bit_manip.cpp.i
+
+src/bit_manip.s: src/bit_manip.cpp.s
+.PHONY : src/bit_manip.s
+
+# target to generate assembly for a file
+src/bit_manip.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/bit_manip.cpp.s
+.PHONY : src/bit_manip.cpp.s
 
 src/emulator.o: src/emulator.cpp.o
 .PHONY : src/emulator.o
@@ -192,13 +177,36 @@ src/emulator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/emulator.cpp.s
 .PHONY : src/emulator.cpp.s
 
+src/hex.o: src/hex.cpp.o
+.PHONY : src/hex.o
+
+# target to build an object file
+src/hex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/hex.cpp.o
+.PHONY : src/hex.cpp.o
+
+src/hex.i: src/hex.cpp.i
+.PHONY : src/hex.i
+
+# target to preprocess a source file
+src/hex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/hex.cpp.i
+.PHONY : src/hex.cpp.i
+
+src/hex.s: src/hex.cpp.s
+.PHONY : src/hex.s
+
+# target to generate assembly for a file
+src/hex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/hex.cpp.s
+.PHONY : src/hex.cpp.s
+
 src/memory.o: src/memory.cpp.o
 .PHONY : src/memory.o
 
 # target to build an object file
 src/memory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/src/memory.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/src/memory.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/memory.cpp.o
 .PHONY : src/memory.cpp.o
 
 src/memory.i: src/memory.cpp.i
@@ -206,8 +214,7 @@ src/memory.i: src/memory.cpp.i
 
 # target to preprocess a source file
 src/memory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/src/memory.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/src/memory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/memory.cpp.i
 .PHONY : src/memory.cpp.i
 
 src/memory.s: src/memory.cpp.s
@@ -215,8 +222,7 @@ src/memory.s: src/memory.cpp.s
 
 # target to generate assembly for a file
 src/memory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/memory.dir/build.make CMakeFiles/memory.dir/src/memory.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bit_manip.dir/build.make CMakeFiles/bit_manip.dir/src/memory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/memory.cpp.s
 .PHONY : src/memory.cpp.s
 
 src/mos6502.o: src/mos6502.cpp.o
@@ -224,7 +230,7 @@ src/mos6502.o: src/mos6502.cpp.o
 
 # target to build an object file
 src/mos6502.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/src/mos6502.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/mos6502.cpp.o
 .PHONY : src/mos6502.cpp.o
 
 src/mos6502.i: src/mos6502.cpp.i
@@ -232,7 +238,7 @@ src/mos6502.i: src/mos6502.cpp.i
 
 # target to preprocess a source file
 src/mos6502.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/src/mos6502.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/mos6502.cpp.i
 .PHONY : src/mos6502.cpp.i
 
 src/mos6502.s: src/mos6502.cpp.s
@@ -240,8 +246,32 @@ src/mos6502.s: src/mos6502.cpp.s
 
 # target to generate assembly for a file
 src/mos6502.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mos6502.dir/build.make CMakeFiles/mos6502.dir/src/mos6502.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/mos6502.cpp.s
 .PHONY : src/mos6502.cpp.s
+
+src/operations.o: src/operations.cpp.o
+.PHONY : src/operations.o
+
+# target to build an object file
+src/operations.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/operations.cpp.o
+.PHONY : src/operations.cpp.o
+
+src/operations.i: src/operations.cpp.i
+.PHONY : src/operations.i
+
+# target to preprocess a source file
+src/operations.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/operations.cpp.i
+.PHONY : src/operations.cpp.i
+
+src/operations.s: src/operations.cpp.s
+.PHONY : src/operations.s
+
+# target to generate assembly for a file
+src/operations.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/operations.cpp.s
+.PHONY : src/operations.cpp.s
 
 # Help Target
 help:
@@ -251,19 +281,25 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... bit_manip"
 	@echo "... emulator"
-	@echo "... memory"
-	@echo "... mos6502"
+	@echo "... src/bit_manip.o"
+	@echo "... src/bit_manip.i"
+	@echo "... src/bit_manip.s"
 	@echo "... src/emulator.o"
 	@echo "... src/emulator.i"
 	@echo "... src/emulator.s"
+	@echo "... src/hex.o"
+	@echo "... src/hex.i"
+	@echo "... src/hex.s"
 	@echo "... src/memory.o"
 	@echo "... src/memory.i"
 	@echo "... src/memory.s"
 	@echo "... src/mos6502.o"
 	@echo "... src/mos6502.i"
 	@echo "... src/mos6502.s"
+	@echo "... src/operations.o"
+	@echo "... src/operations.i"
+	@echo "... src/operations.s"
 .PHONY : help
 
 

@@ -4,7 +4,7 @@
 # compile CXX with /usr/lib64/ccache/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/Petrign/Проги/CPP/mos6502_emulator/include
 
 CXX_FLAGS = 
 
