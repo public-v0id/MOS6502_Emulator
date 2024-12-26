@@ -1,7 +1,7 @@
 CMakeFiles/emulator.dir/src/memory.cpp.o: \
  /home/Petrign/Проги/CPP/mos6502_emulator/src/memory.cpp \
  /usr/include/stdc-predef.h \
- /home/Petrign/Проги/CPP/mos6502_emulator/src/../include/memory.h \
+ /home/Petrign/Проги/CPP/mos6502_emulator/include/memory.h \
  /usr/include/c++/14/cstdint \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
@@ -101,7 +101,7 @@ CMakeFiles/emulator.dir/src/memory.cpp.o: \
  /usr/include/c++/14/bits/memory_resource.h /usr/include/c++/14/cstddef \
  /usr/include/c++/14/bits/uses_allocator.h \
  /usr/include/c++/14/bits/uses_allocator_args.h /usr/include/c++/14/tuple \
- /home/Petrign/Проги/CPP/mos6502_emulator/src/../include/hex.h \
+ /home/Petrign/Проги/CPP/mos6502_emulator/include/hex.h \
  /usr/include/c++/14/iostream /usr/include/c++/14/ostream \
  /usr/include/c++/14/ios /usr/include/c++/14/exception \
  /usr/include/c++/14/bits/exception_ptr.h \

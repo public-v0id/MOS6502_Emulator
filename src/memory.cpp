@@ -50,10 +50,11 @@ void memory::mem_dump(void) {
 	}
 }
 
-uint8_t memory::getByte(uint16_t ind) {
+uint8_t memory::get_byte(uint16_t ind) {
 	return mem[ind];
 }
 
-void memory::setByte(uint16_t ind, uint8_t val) {
+void memory::set_byte(uint16_t ind, uint8_t val) {
 	mem[ind] = val;
+	std::cout << "Set " << ind << " as " << (unsigned(val)&0xFF) << "\n";
 }

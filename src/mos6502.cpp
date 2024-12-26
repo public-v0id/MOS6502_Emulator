@@ -45,11 +45,32 @@ void mos6502::set_v(uint8_t val1, uint8_t val2) {
 }
 
 void mos6502::set_z(uint8_t reg) {
-	set_bit(PF, 1, !reg);
+	set_bit(PF, 1, reg == 0);
 }
 
 void mos6502::set_c(uint8_t val1, uint8_t val2) {
 	set_bit(PF, 0, ((uint16_t)val1+(uint16_t)val2)&256);
+}
+
+void mos6502::set_c(bool val) {
+	std::cout << "Setting C as " << val << "\n";
+	set_bit(PF, 0, val);
+}
+
+bool mos6502::get_n() {
+	return get_bit(PF, 7);
+}
+
+bool mos6502::get_v() {
+	return get_bit(PF, 6);
+}
+
+bool mos6502::get_z() {
+	return get_bit(PF, 1);
+}
+
+bool mos6502::get_c() {
+	return get_bit(PF, 0);
 }
 
 void mos6502::reg_dump() {
@@ -57,12 +78,23 @@ void mos6502::reg_dump() {
 }
 
 void mos6502::run() {
-	X = 5;
-	Y = 16;
-	operations[mem.getByte(PC)](this, mem.getByte(PC));
+	while (operations[mem.get_byte(PC)] != nullptr) {
+		std::cout << "PC is " << PC << "\n";
+		operations[mem.get_byte(PC)](this, mem.get_byte(PC));
+	}
 	reg_dump();
 }
 
-memory* mos6502::getMem() {
+void mos6502::push(uint8_t val) {
+	if (SP <= 255) {
+		mem.set_byte(SP+256, val);
+		SP += (SP < 255) ? 1 : 0;
+	}
+	else {
+		std::cout << "Error! Stack is filled!\n"; //todo: проверить, так ли это работает на машине
+	}
+}
+
+memory* mos6502::get_mem() {
 	return &mem;
 }

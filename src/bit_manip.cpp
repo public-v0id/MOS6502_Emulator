@@ -6,6 +6,9 @@ bool get_bit(uint8_t reg, uint8_t num) {
 
 void set_bit(uint8_t& reg, uint8_t num, bool val) {
 	if (val && !((reg>>num)&1)) {
-		reg += ((val ? 1 : 0)<<num);
+		reg += (1<<num);
+	}
+	else if (!val && (reg>>num)&1) {
+		reg -= (1<<num);
 	}
 }

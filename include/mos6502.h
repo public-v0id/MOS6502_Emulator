@@ -14,11 +14,17 @@ class mos6502 {
 		uint8_t SP;	//Stack Pointer
 		uint16_t PC;	//Program Counter
 		uint8_t PF;	//Processor Flags
-		memory* getMem();
+		memory* get_mem();
 		void set_n(uint8_t reg);
 		void set_v(uint8_t val1, uint8_t val2);
 		void set_z(uint8_t reg);
 		void set_c(uint8_t val1, uint8_t val2);
+		void set_c(bool val);
+		bool get_n();
+		bool get_v();
+		bool get_z();
+		bool get_c();
+		void push(uint8_t val);
 		void run();
 	private:
 		memory mem;	
