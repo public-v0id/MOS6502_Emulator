@@ -385,6 +385,74 @@ void ROR(mos6502* cpu, uint8_t ind) {
 	cpu->PC += size[ind];
 }
 
+void NOP(mos6502* cpu, uint8_t ind) {
+	cpu->PC += size[ind];
+}
+
+void CLC(mos6502* cpu, uint8_t ind) {
+	cpu->set_c_dir(false);
+	cpu->PC += size[ind];
+}
+
+void CLD(mos6502* cpu, uint8_t ind) {
+	cpu->set_d_dir(false);
+	cpu->PC += size[ind];
+}
+
+void CLI(mos6502* cpu, uint8_t ind) {
+	cpu->set_i_dir(false);
+	cpu->PC += size[ind];
+}
+
+void CLV(mos6502* cpu, uint8_t ind) {
+	cpu->set_v_dir(false);
+	cpu->PC += size[ind];
+}
+
+void SEC(mos6502* cpu, uint8_t ind) {
+	cpu->set_c_dir(true);
+	cpu->PC += size[ind];
+}
+
+void SED(mos6502* cpu, uint8_t ind) {
+	cpu->set_d_dir(true);
+	cpu->PC += size[ind];
+}
+
+void SEI(mos6502* cpu, uint8_t ind) {
+	cpu->set_i_dir(true);
+	cpu->PC += size[ind];
+}
+
+void RTI(mos6502* cpu, uint8_t ind) {
+	cpu->set_PF(cpu->pull());
+	cpu->PC = cpu->pull();
+	cpu->PC += (uint16_t(cpu->pull()))<<8;
+	cpu->PC += size[ind];
+}
+
+void ADC(mos6502* cpu, uint8_t ind) {
+	uint8_t op = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	uint8_t res = cpu->AC+op+(cpu->get_c() ? 1 : 0);
+	cpu->set_v(cpu->AC, op, (cpu->get_c() ? 1 : 0));
+	cpu->set_c(cpu->AC, op, (cpu->get_c() ? 1 : 0));
+	cpu->set_z(res);
+	cpu->set_n(res);
+	cpu->AC = res;
+	cpu->PC += size[ind];
+}
+
+void SBC(mos6502* cpu, uint8_t ind) {
+	uint8_t op = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	uint8_t res = cpu->AC-op-(cpu->get_c() ? 0 : 1);
+	cpu->set_v(cpu->AC, ~op, (cpu->get_c() ? 1 : 0));
+	cpu->set_c(cpu->AC, (~op)+1, (cpu->get_c() ? 0 : 1));
+	cpu->set_z(res);
+	cpu->set_n(res);
+	cpu->AC = res;
+	cpu->PC += size[ind];
+}
+
 void (*operations[256])(mos6502*, uint8_t) = {nullptr};
 uint16_t (*addressing_functions[256])(mos6502*) = {nullptr};
 uint8_t size[256] = {1};
@@ -529,6 +597,34 @@ static bool init = [](){
 	size[0x6E] = 3;
 	size[0x76] = 2;
 	size[0x7E] = 3;
+	//NOP
+	size[0xEA] = 1;
+	//set/clear operations
+	size[0x18] = 1;
+	size[0x38] = 1;
+	size[0x58] = 1;
+	size[0x78] = 1;
+	size[0xB8] = 1;
+	size[0xD8] = 1;
+	size[0xF8] = 1;
+	//ADC
+	size[0x61] = 2;
+	size[0x65] = 2;
+	size[0x69] = 2;
+	size[0x6D] = 3;
+	size[0x71] = 2;
+	size[0x75] = 2;
+	size[0x79] = 3;
+	size[0x7D] = 3;
+	//SBC
+	size[0xE1] = 2;
+	size[0xE5] = 2;
+	size[0xE9] = 2;
+	size[0xED] = 3;
+	size[0xF1] = 2;
+	size[0xF5] = 2;
+	size[0xF9] = 3;
+	size[0xFD] = 3;
 	//LDA
 	addressing_functions[161] = zpxind;
 	addressing_functions[165] = zp;
@@ -646,6 +742,24 @@ static bool init = [](){
 	addressing_functions[0x6E] = abs;
 	addressing_functions[0x76] = zpx;
 	addressing_functions[0x7E] = absx;
+	//ADC
+	addressing_functions[0x61] = zpxind;
+	addressing_functions[0x65] = zp;
+	addressing_functions[0x69] = imm;
+	addressing_functions[0x6D] = abs;
+	addressing_functions[0x71] = zpyind;
+	addressing_functions[0x75] = zpx;
+	addressing_functions[0x79] = absy;
+	addressing_functions[0x7D] = absx;
+	//SBC
+	addressing_functions[0xE1] = zpxind;
+	addressing_functions[0xE5] = zp;
+	addressing_functions[0xE9] = imm;
+	addressing_functions[0xED] = abs;
+	addressing_functions[0xF1] = zpyind;
+	addressing_functions[0xF5] = zpx;
+	addressing_functions[0xF9] = absy;
+	addressing_functions[0xFD] = absx;
 	//LDA
 	operations[161] = LDA;
 	operations[165] = LDA;
@@ -795,5 +909,33 @@ static bool init = [](){
 	operations[0x6E] = ROR;
 	operations[0x76] = ROR;
 	operations[0x7E] = ROR;
+	//NOP
+	operations[0xEA] = NOP;
+	//set/clear operations
+operations[0x18] = CLC;
+	operations[0x38] = SEC;
+	operations[0x58] = CLI;
+	operations[0x78] = SEI;
+	operations[0xB8] = CLV;
+	operations[0xD8] = CLD;
+	operations[0xF8] = SED;
+	//ADC
+	operations[0x61] = ADC;
+	operations[0x65] = ADC;
+	operations[0x69] = ADC;
+	operations[0x6D] = ADC;
+	operations[0x71] = ADC;
+	operations[0x75] = ADC;
+	operations[0x79] = ADC;
+	operations[0x7D] = ADC;
+	//SBC
+	operations[0xE1] = SBC;
+	operations[0xE5] = SBC;
+	operations[0xE9] = SBC;
+	operations[0xED] = SBC;
+	operations[0xF1] = SBC;
+	operations[0xF5] = SBC;
+	operations[0xF9] = SBC;
+	operations[0xFD] = SBC;
 	return true;
 }();

@@ -31,7 +31,7 @@ mos6502::mos6502(uint16_t size, std::string file) : mem(size) {
 	Y = 0;
 	SP = 0xFF;
 	PC = 0;
-	PF = 0;
+	PF = 0x36;
 	mem.read_file(file);	
 }
 
@@ -44,11 +44,28 @@ void mos6502::set_n_dir(bool val) {
 }
 
 void mos6502::set_v(uint8_t val1, uint8_t val2) {
-	set_bit(PF, 6, ((((uint16_t)val1+(uint16_t)val2)&256)>>8)^inc_7th_bit(val1, val2));
+	bool c7 = (((val1&0x7F)+(val2&0x7F))&0x80) != 0;
+	bool new_c = (uint16_t(val1)+uint16_t(val2) > 255);
+	set_bit(PF, 6, c7^new_c);
+}
+
+void mos6502::set_v(uint8_t val1, uint8_t val2, uint8_t val3) {
+	bool c7 = (((val1&0x7F)+(val2&0x7F)+(val3&0x7F))&0x80) != 0;
+	bool new_c = (uint16_t(val1)+uint16_t(val2)+uint16_t(val3) > 255);
+	std::cout << uint16_t((val1&0x7F)+(val2&0x7F)+(val3&0x7F)) << " " << c7 << " " << new_c << "\n";
+	set_bit(PF, 6, c7^new_c);
 }
 
 void mos6502::set_v_dir(bool val) {
 	set_bit(PF, 6, val);
+}
+
+void mos6502::set_d_dir(bool val) {
+	set_bit(PF, 3, val);
+}
+
+void mos6502::set_i_dir(bool val) {
+	set_bit(PF, 2, val);
 }
 
 void mos6502::set_z(uint8_t reg) {
@@ -57,6 +74,10 @@ void mos6502::set_z(uint8_t reg) {
 
 void mos6502::set_c(uint8_t val1, uint8_t val2) {
 	set_bit(PF, 0, ((uint16_t)val1+(uint16_t)val2)&256);
+}
+
+void mos6502::set_c(uint8_t val1, uint8_t val2, uint8_t val3) {
+	set_bit(PF, 0, ((uint16_t)val1+(uint16_t)val2+(uint16_t)val3)&256);
 }
 
 void mos6502::set_c_dir(bool val) {
@@ -72,12 +93,24 @@ bool mos6502::get_v() {
 	return get_bit(PF, 6);
 }
 
+bool mos6502::get_d() {
+	return get_bit(PF, 3);
+}
+
+bool mos6502::get_i() {
+	return get_bit(PF, 2);
+}
+
 bool mos6502::get_z() {
 	return get_bit(PF, 1);
 }
 
 bool mos6502::get_c() {
 	return get_bit(PF, 0);
+}
+
+void mos6502::set_PF(uint8_t val) {
+	PF = val&0xCF;
 }
 
 void mos6502::reg_dump() {
