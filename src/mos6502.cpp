@@ -19,7 +19,7 @@ mos6502::mos6502(uint16_t size) : mem(size) {
 	AC = 0;
 	X = 0;
 	Y = 0;
-	SP = 0;
+	SP = 0xFF;
 	PC = 0;
 	PF = 0;
 }
@@ -29,19 +29,26 @@ mos6502::mos6502(uint16_t size, std::string file) : mem(size) {
 	AC = 0;
 	X = 0;
 	Y = 0;
-	SP = 0;
+	SP = 0xFF;
 	PC = 0;
 	PF = 0;
-	mem.read_file(file);
-	mem.mem_dump();
+	mem.read_file(file);	
 }
 
 void mos6502::set_n(uint8_t reg) {
 	set_bit(PF, 7, reg&128);
 }
 
+void mos6502::set_n_dir(bool val) {
+	set_bit(PF, 7, val);
+}
+
 void mos6502::set_v(uint8_t val1, uint8_t val2) {
 	set_bit(PF, 6, ((((uint16_t)val1+(uint16_t)val2)&256)>>8)^inc_7th_bit(val1, val2));
+}
+
+void mos6502::set_v_dir(bool val) {
+	set_bit(PF, 6, val);
 }
 
 void mos6502::set_z(uint8_t reg) {
@@ -52,7 +59,7 @@ void mos6502::set_c(uint8_t val1, uint8_t val2) {
 	set_bit(PF, 0, ((uint16_t)val1+(uint16_t)val2)&256);
 }
 
-void mos6502::set_c(bool val) {
+void mos6502::set_c_dir(bool val) {
 	std::cout << "Setting C as " << val << "\n";
 	set_bit(PF, 0, val);
 }
@@ -82,17 +89,20 @@ void mos6502::run() {
 		std::cout << "PC is " << PC << "\n";
 		operations[mem.get_byte(PC)](this, mem.get_byte(PC));
 	}
+	mem.mem_dump();
 	reg_dump();
 }
 
 void mos6502::push(uint8_t val) {
-	if (SP <= 255) {
-		mem.set_byte(SP+256, val);
-		SP += (SP < 255) ? 1 : 0;
-	}
-	else {
-		std::cout << "Error! Stack is filled!\n"; //todo: проверить, так ли это работает на машине
-	}
+	mem.set_byte(SP+256, val);
+	std::cout << "Pushing to " << uint16_t(SP)+256 << "\n";
+	SP -= 1;
+}
+
+uint8_t mos6502::pull() {
+	SP += 1;
+	std::cout << "Pulling " << uint16_t(SP)+255 << "\n";
+	return mem.get_byte(SP+256);
 }
 
 memory* mos6502::get_mem() {

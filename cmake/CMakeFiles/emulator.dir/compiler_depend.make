@@ -730,6 +730,7 @@ CMakeFiles/emulator.dir/src/mos6502.cpp.o: /home/Petrign/Проги/CPP/mos6502_
   /usr/lib/gcc/x86_64-redhat-linux/14/include/stdint.h
 
 CMakeFiles/emulator.dir/src/operations.cpp.o: /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp \
+  /home/Petrign/Проги/CPP/mos6502_emulator/include/bit_manip.h \
   /home/Petrign/Проги/CPP/mos6502_emulator/include/memory.h \
   /home/Petrign/Проги/CPP/mos6502_emulator/include/mos6502.h \
   /home/Petrign/Проги/CPP/mos6502_emulator/include/operations.h \

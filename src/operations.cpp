@@ -1,3 +1,4 @@
+#include "bit_manip.h"
 #include "mos6502.h"
 #include "operations.h"
 #include <iostream>
@@ -8,6 +9,15 @@ void branch(mos6502* cpu, bool value) {
 		cpu->PC += (int8_t)cpu->get_mem()->get_byte(cpu->PC+1);
 	}
 }
+
+void compare(uint8_t val, mos6502* cpu, uint8_t ind) {
+	uint8_t memval = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_n(val-memval);
+	cpu->set_z(val-memval);
+	cpu->set_c(val, (~memval)+1);
+	cpu->PC += size[ind];
+}
+	
 
 uint16_t imm(mos6502* cpu) {
 	return cpu->PC+1;
@@ -74,7 +84,7 @@ void LDY(mos6502* cpu, uint8_t ind) {
 }
 
 void LSR_A(mos6502* cpu, uint8_t ind) {
-	cpu->set_c(cpu->AC&1);
+	cpu->set_c_dir(cpu->AC&1);
 	cpu->AC >>= 1;
 	cpu->set_n(cpu->AC);
 	cpu->set_z(cpu->AC);
@@ -86,9 +96,9 @@ void JMP(mos6502* cpu, uint8_t ind) {
 	cpu->PC = addressing_functions[ind](cpu);
 }
 
-void LSR(mos6502* cpu, uint8_t ind) { //todo: проверить, реально ли здесь должен быть MEM -> MEM
+void LSR(mos6502* cpu, uint8_t ind) {
 	uint8_t val = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
-	cpu->set_c(val&1);
+	cpu->set_c_dir(val&1);
 	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
 	val >>= 1;
 	cpu->get_mem()->set_byte(addressing_functions[ind](cpu), val);
@@ -100,6 +110,13 @@ void LSR(mos6502* cpu, uint8_t ind) { //todo: проверить, реально
 
 void ORA(mos6502* cpu, uint8_t ind) {
 	cpu->AC = cpu->AC | cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_n(cpu->AC);
+	cpu->set_z(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void EOR(mos6502* cpu, uint8_t ind) {
+	cpu->AC = cpu->AC ^ cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
 	cpu->set_n(cpu->AC);
 	cpu->set_z(cpu->AC);
 	cpu->PC += size[ind];
@@ -245,6 +262,129 @@ void INY(mos6502* cpu, uint8_t ind) {
 	cpu->PC += size[ind];
 }
 
+void ASL_A(mos6502* cpu, uint8_t ind) {
+	cpu->set_c_dir(cpu->AC&128);
+	cpu->AC <<= 1;
+	cpu->set_n(cpu->AC);
+	cpu->set_z(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void ASL(mos6502* cpu, uint8_t ind) {
+	uint8_t val = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_c_dir(val&128);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	val <<= 1;
+	cpu->get_mem()->set_byte(addressing_functions[ind](cpu), val);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	cpu->set_n(val);
+	cpu->set_z(val);
+	cpu->PC += size[ind];
+}
+
+void BIT(mos6502* cpu, uint8_t ind) {
+	uint8_t val = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_z(cpu->AC & val);
+	cpu->set_n_dir(get_bit(val, 7));
+	cpu->set_v_dir(get_bit(val, 6));
+	cpu->PC += size[ind];
+}
+
+void CMP(mos6502* cpu, uint8_t ind) {
+	compare(cpu->AC, cpu, ind);
+}
+
+void CPX(mos6502* cpu, uint8_t ind) {
+	compare(cpu->X, cpu, ind);
+}
+
+void CPY(mos6502* cpu, uint8_t ind) {
+	compare(cpu->Y, cpu, ind);
+}
+
+void PHA(mos6502* cpu, uint8_t ind) {
+	cpu->push(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void PHP(mos6502* cpu, uint8_t ind) {
+	cpu->push(cpu->PF);
+	cpu->PC += size[ind];
+}
+
+void PLA(mos6502* cpu, uint8_t ind) {
+	cpu->AC = cpu->pull();
+	cpu->set_n(cpu->AC);
+	cpu->set_z(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void PLP(mos6502* cpu, uint8_t ind) {
+	cpu->PF = cpu->pull();
+	cpu->PC += size[ind];
+}
+
+void JSR(mos6502* cpu, uint8_t ind) {
+	cpu->push((cpu->PC+2)>>8);
+	cpu->push((cpu->PC+2)&0xFF);
+	cpu->PC = (uint16_t(cpu->get_mem()->get_byte(cpu->PC+2))<<8)+cpu->get_mem()->get_byte(cpu->PC+1);
+	std::cout << "PC is now "<< cpu->PC << "\n";
+}
+
+void RTS(mos6502* cpu, uint8_t ind) {
+	cpu->PC = cpu->pull();
+	cpu->PC += (uint16_t(cpu->pull()))<<8;
+	cpu->PC += size[ind];
+}
+
+void ROL_A(mos6502* cpu, uint8_t ind) {
+	uint8_t c = cpu->get_c() ? 1 : 0;
+	cpu->set_c_dir(cpu->AC&128);
+	cpu->AC <<= 1;
+	cpu->AC += c;
+	cpu->set_n(cpu->AC);
+	cpu->set_z(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void ROL(mos6502* cpu, uint8_t ind) {
+	uint8_t c = cpu->get_c() ? 1 : 0;
+	uint8_t val = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_c_dir(val&128);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	val <<= 1;
+	val += c;
+	cpu->get_mem()->set_byte(addressing_functions[ind](cpu), val);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	cpu->set_n(val);
+	cpu->set_z(val);
+	cpu->PC += size[ind];
+}
+
+void ROR_A(mos6502* cpu, uint8_t ind) {
+	uint8_t c = cpu->get_c() ? 1 : 0;
+	cpu->set_c_dir(cpu->AC&1);
+	cpu->AC >>= 1;
+	cpu->AC += (c<<7);
+	cpu->set_n(cpu->AC);
+	cpu->set_z(cpu->AC);
+	cpu->PC += size[ind];
+}
+
+void ROR(mos6502* cpu, uint8_t ind) {
+	uint8_t c = cpu->get_c() ? 1 : 0;
+	uint8_t val = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
+	cpu->set_c_dir(val&1);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	val >>= 1;
+	val += (c<<7);
+	cpu->get_mem()->set_byte(addressing_functions[ind](cpu), val);
+	std::cout << "Val is " << (((unsigned)val)&0xFF) << "\n";
+	cpu->set_n(val);
+	cpu->set_z(val);
+	cpu->PC += size[ind];
+}
+
 void (*operations[256])(mos6502*, uint8_t) = {nullptr};
 uint16_t (*addressing_functions[256])(mos6502*) = {nullptr};
 uint8_t size[256] = {1};
@@ -334,6 +474,61 @@ static bool init = [](){
 	size[0xEE] = 3;
 	size[0xF6] = 2;
 	size[0xFE] = 3;
+	//EOR
+	size[0x41] = 2;
+	size[0x45] = 2;
+	size[0x49] = 2;
+	size[0x4D] = 3;
+	size[0x51] = 2;
+	size[0x55] = 2;
+	size[0x59] = 3;
+	size[0x5D] = 3;
+	//ASL
+	size[0x06] = 2;
+	size[0x0A] = 1;
+	size[0x0E] = 3;
+	size[0x16] = 2;
+	size[0x1E] = 3;
+	//BIT
+	size[0x24] = 2;
+	size[0x2C] = 3;
+	//CMP
+	size[0xC1] = 2;
+	size[0xC5] = 2;
+	size[0xC9] = 2;
+	size[0xCD] = 3;
+	size[0xD1] = 2;
+	size[0xD5] = 2;
+	size[0xD9] = 3;
+	size[0xDD] = 3;
+	//CPX
+	size[0xE0] = 2;
+	size[0xE4] = 2;
+	size[0xEC] = 3;
+	//CPY
+	size[0xC0] = 2;
+	size[0xC4] = 2;
+	size[0xCC] = 3;
+	//Stack operations
+	size[0x08] = 1;
+	size[0x28] = 1;
+	size[0x48] = 1;
+	size[0x68] = 1;
+	//Subroutines
+	size[0x20] = 3;
+	size[0x60] = 1;
+	//ROL
+	size[0x26] = 2;
+	size[0x2A] = 1;
+	size[0x2E] = 3;
+	size[0x36] = 2;
+	size[0x3E] = 3;
+	//ROR
+	size[0x66] = 2;
+	size[0x6A] = 1;
+	size[0x6E] = 3;
+	size[0x76] = 2;
+	size[0x7E] = 3;
 	//LDA
 	addressing_functions[161] = zpxind;
 	addressing_functions[165] = zp;
@@ -407,6 +602,50 @@ static bool init = [](){
 	addressing_functions[0xEE] = abs;
 	addressing_functions[0xF6] = zpx;
 	addressing_functions[0xFE] = absx;
+	//EOR
+	addressing_functions[0x41] = zpxind;
+	addressing_functions[0x45] = zp;
+	addressing_functions[0x49] = imm;
+	addressing_functions[0x4D] = abs;
+	addressing_functions[0x51] = zpyind;
+	addressing_functions[0x55] = zpx;
+	addressing_functions[0x59] = absy;
+	addressing_functions[0x5D] = absx;
+	//ASL
+	addressing_functions[0x06] = zp;
+	addressing_functions[0x0E] = abs;
+	addressing_functions[0x16] = zpx;
+	addressing_functions[0x1E] = absx;
+	//BIT
+	addressing_functions[0x24] = zp;
+	addressing_functions[0x2C] = abs;
+	//CMP
+	addressing_functions[0xC1] = zpxind;
+	addressing_functions[0xC5] = zp;
+	addressing_functions[0xC9] = imm;
+	addressing_functions[0xCD] = abs;
+	addressing_functions[0xD1] = zpyind;
+	addressing_functions[0xD5] = zpx;
+	addressing_functions[0xD9] = absy;
+	addressing_functions[0xDD] = absx;
+	//CPX
+	addressing_functions[0xE0] = imm;
+	addressing_functions[0xE4] = zp;
+	addressing_functions[0xEC] = abs;
+	//CPY
+	addressing_functions[0xC0] = imm;
+	addressing_functions[0xC4] = zp;
+	addressing_functions[0xCC] = abs;
+	//ROL
+	addressing_functions[0x26] = zp;
+	addressing_functions[0x2E] = abs;
+	addressing_functions[0x36] = zpx;
+	addressing_functions[0x3E] = absx;
+	//ROR
+	addressing_functions[0x66] = zp;
+	addressing_functions[0x6E] = abs;
+	addressing_functions[0x76] = zpx;
+	addressing_functions[0x7E] = absx;
 	//LDA
 	operations[161] = LDA;
 	operations[165] = LDA;
@@ -458,6 +697,10 @@ static bool init = [](){
 	operations[0x86] = STX;
 	operations[0x8E] = STX;
 	operations[0x96] = STX;
+	//STY
+	operations[0x84] = STY;
+	operations[0x8C] = STY;
+	operations[0x94] = STY;
 	//T...
 	operations[0x8A] = TXA;
 	operations[0x98] = TYA;
@@ -497,5 +740,60 @@ static bool init = [](){
 	operations[0xEE] = INC;
 	operations[0xF6] = INC;
 	operations[0xFE] = INC;
+	//EOR
+	operations[0x41] = EOR;
+	operations[0x45] = EOR;
+	operations[0x49] = EOR;
+	operations[0x4D] = EOR;
+	operations[0x51] = EOR;
+	operations[0x55] = EOR;
+	operations[0x59] = EOR;
+	operations[0x5D] = EOR;
+	//ASL
+	operations[0x06] = ASL;
+	operations[0x0A] = ASL_A;
+	operations[0x0E] = ASL;
+	operations[0x16] = ASL;
+	operations[0x1E] = ASL;
+	//BIT
+	operations[0x24] = BIT;
+	operations[0x2C] = BIT;
+	//CMP
+	operations[0xC1] = CMP;
+	operations[0xC5] = CMP;
+	operations[0xC9] = CMP;
+	operations[0xCD] = CMP;
+	operations[0xD1] = CMP;
+	operations[0xD5] = CMP;
+	operations[0xD9] = CMP;
+	operations[0xDD] = CMP;
+	//CPX
+	operations[0xE0] = CPX;
+	operations[0xE4] = CPX;
+	operations[0xEC] = CPX;
+	//CPY
+	operations[0xC0] = CPY;
+	operations[0xC4] = CPY;
+	operations[0xCC] = CPY;
+	//Stack operations (PHA, PHP, PLA, PLP)
+	operations[0x08] = PHP;
+	operations[0x28] = PLP;
+	operations[0x48] = PHA;
+	operations[0x68] = PLA;
+	//Subroutines (JSR, RTS)
+	operations[0x20] = JSR;
+	operations[0x60] = RTS;
+	//ROL
+	operations[0x26] = ROL;
+	operations[0x2A] = ROL_A;
+	operations[0x2E] = ROL;
+	operations[0x36] = ROL;
+	operations[0x3E] = ROL;
+	//ROR
+	operations[0x66] = ROR;
+	operations[0x6A] = ROR_A;
+	operations[0x6E] = ROR;
+	operations[0x76] = ROR;
+	operations[0x7E] = ROR;
 	return true;
 }();

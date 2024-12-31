@@ -16,15 +16,18 @@ class mos6502 {
 		uint8_t PF;	//Processor Flags
 		memory* get_mem();
 		void set_n(uint8_t reg);
+		void set_n_dir(bool val);
 		void set_v(uint8_t val1, uint8_t val2);
+		void set_v_dir(bool val);
 		void set_z(uint8_t reg);
 		void set_c(uint8_t val1, uint8_t val2);
-		void set_c(bool val);
+		void set_c_dir(bool val);
 		bool get_n();
 		bool get_v();
 		bool get_z();
 		bool get_c();
 		void push(uint8_t val);
+		uint8_t pull();
 		void run();
 	private:
 		memory mem;	

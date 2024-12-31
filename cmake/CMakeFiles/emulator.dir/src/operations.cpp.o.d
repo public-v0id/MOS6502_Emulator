@@ -1,8 +1,7 @@
 CMakeFiles/emulator.dir/src/operations.cpp.o: \
  /home/Petrign/Проги/CPP/mos6502_emulator/src/operations.cpp \
  /usr/include/stdc-predef.h \
- /home/Petrign/Проги/CPP/mos6502_emulator/include/mos6502.h \
- /home/Petrign/Проги/CPP/mos6502_emulator/include/memory.h \
+ /home/Petrign/Проги/CPP/mos6502_emulator/include/bit_manip.h \
  /usr/include/c++/14/cstdint \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
@@ -18,8 +17,10 @@ CMakeFiles/emulator.dir/src/operations.cpp.o: \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
  /usr/include/bits/time64.h /usr/include/bits/wchar.h \
  /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/c++/14/string \
- /usr/include/c++/14/bits/requires_hosted.h \
+ /usr/include/bits/stdint-least.h \
+ /home/Petrign/Проги/CPP/mos6502_emulator/include/mos6502.h \
+ /home/Petrign/Проги/CPP/mos6502_emulator/include/memory.h \
+ /usr/include/c++/14/string /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/bits/stringfwd.h \
  /usr/include/c++/14/bits/memoryfwd.h \
  /usr/include/c++/14/bits/char_traits.h \
