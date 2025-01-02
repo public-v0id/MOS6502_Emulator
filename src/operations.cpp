@@ -17,7 +17,43 @@ void compare(uint8_t val, mos6502* cpu, uint8_t ind) {
 	cpu->set_c(val, (~memval)+1);
 	cpu->PC += size[ind];
 }
-	
+
+uint8_t dec_add(uint8_t val1, uint8_t val2, mos6502* cpu) {
+	uint8_t l = (val1&0xF)%10+(val2&0xF)%10;
+	uint8_t h = (val1>>4)%10+(val2>>4)%10+(l/10);
+	l %= 10;
+	cpu->set_c_dir(h/10 > 0);
+	h %= 10;
+	return (h<<4)+l;
+}
+
+uint8_t dec_add(uint8_t val1, uint8_t val2, uint8_t val3, mos6502* cpu) {
+	uint8_t l = (val1&0xF)%10+(val2&0xF)%10+(val3&0xF)%10;
+	uint8_t h = (val1>>4)%10+(val2>>4)%10+(val3>>4)%10+(l/10);
+	l %= 10;
+	cpu->set_c_dir(h/10 > 0);
+	h %= 10;
+	return (h<<4)+l;
+}
+
+uint8_t dec_sub(uint8_t val1, uint8_t val2, mos6502* cpu) {
+	uint8_t l = (val1&0xF)%10-(val2&0xF)%10;
+	uint8_t h = (val1>>4)%10-(val2>>4)%10-(l < 0 ? 1 : 0);
+	l = (l+10)%10;
+	cpu->set_c_dir(h >= 0);
+	h = (h+10)%10;
+	return (h<<4)+l;
+}
+
+uint8_t dec_sub(uint8_t val1, uint8_t val2, uint8_t val3, mos6502* cpu) {
+	int8_t l = int8_t(val1&0xF)%10-int8_t(val2&0xF)%10-int8_t(val3&0xF)%10;
+	int8_t h = int8_t(val1>>4)%10-int8_t(val2>>4)%10-int8_t(val3>>4)%10-int8_t(l < 0 ? 1 : 0);
+	std::cout << "L H " << int16_t(l) << " " << int16_t(h) << "\n";
+	l = (l+10)%10;
+	cpu->set_c_dir(h >= 0);
+	h = (h+10)%10;
+	return (h<<4)+l;
+}
 
 uint16_t imm(mos6502* cpu) {
 	return cpu->PC+1;
@@ -433,20 +469,35 @@ void RTI(mos6502* cpu, uint8_t ind) {
 
 void ADC(mos6502* cpu, uint8_t ind) {
 	uint8_t op = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
-	uint8_t res = cpu->AC+op+(cpu->get_c() ? 1 : 0);
-	cpu->set_v(cpu->AC, op, (cpu->get_c() ? 1 : 0));
-	cpu->set_c(cpu->AC, op, (cpu->get_c() ? 1 : 0));
-	cpu->set_z(res);
+	uint8_t res = 0;
+	if (!cpu->get_d()) {
+		res = cpu->AC+op+(cpu->get_c() ? 1 : 0);
+		cpu->set_v(cpu->AC, op, (cpu->get_c() ? 1 : 0));
+		cpu->set_c(cpu->AC, op, (cpu->get_c() ? 1 : 0));
+		cpu->set_n(res);
+	}
+	else {
+		res = dec_add(cpu->AC, op, cpu->get_c() ? 1 : 0, cpu);
+		cpu->set_v_dir(false);
+	}
 	cpu->set_n(res);
+	cpu->set_z(res);
 	cpu->AC = res;
 	cpu->PC += size[ind];
 }
 
 void SBC(mos6502* cpu, uint8_t ind) {
 	uint8_t op = cpu->get_mem()->get_byte(addressing_functions[ind](cpu));
-	uint8_t res = cpu->AC-op-(cpu->get_c() ? 0 : 1);
-	cpu->set_v(cpu->AC, ~op, (cpu->get_c() ? 1 : 0));
-	cpu->set_c(cpu->AC, (~op)+1, (cpu->get_c() ? 0 : 1));
+	uint8_t res = 0;
+	if (!cpu->get_d()) {
+		res = cpu->AC-op-(cpu->get_c() ? 0 : 1);
+		cpu->set_v(cpu->AC, ~op, (cpu->get_c() ? 1 : 0));
+		cpu->set_c(cpu->AC, (~op)+1, (cpu->get_c() ? 0 : 1));
+	}
+	else {
+		res = dec_sub(cpu->AC, op, (cpu->get_c() ? 0 : 1), cpu);
+		cpu->set_v_dir(false);
+	}
 	cpu->set_z(res);
 	cpu->set_n(res);
 	cpu->AC = res;
@@ -912,7 +963,7 @@ static bool init = [](){
 	//NOP
 	operations[0xEA] = NOP;
 	//set/clear operations
-operations[0x18] = CLC;
+	operations[0x18] = CLC;
 	operations[0x38] = SEC;
 	operations[0x58] = CLI;
 	operations[0x78] = SEI;
