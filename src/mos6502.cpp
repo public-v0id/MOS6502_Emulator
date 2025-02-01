@@ -14,7 +14,7 @@ mos6502::mos6502() {
 	mos6502(4096);
 }
 
-mos6502::mos6502(uint16_t size) : mem(size) {
+mos6502::mos6502(uint32_t size) : mem(size) {
 	std::cout << "creating CPU with " << size << " bytes of memory\n";
 	AC = 0;
 	X = 0;
@@ -24,7 +24,7 @@ mos6502::mos6502(uint16_t size) : mem(size) {
 	PF = 0;
 }
 
-mos6502::mos6502(uint16_t size, std::string file) : mem(size) {
+mos6502::mos6502(uint32_t size, std::string file) : mem(size) {
 	std::cout << "creating CPU with " << size << " bytes of memory\n";
 	AC = 0;
 	X = 0;
@@ -114,14 +114,31 @@ void mos6502::set_PF(uint8_t val) {
 }
 
 void mos6502::reg_dump() {
-	std::cout << "AC: " << ((unsigned)AC&0xFF) << "\nX:  "  << ((unsigned)X&0xFF) << "\nY:  " << ((unsigned)Y&0xFF) << "\nSP: " << ((unsigned)SP&0xFF) << "\nPC: " << ((unsigned)PC&0xFF) << "\nPF: " << ((unsigned)PF&0xFF) << "\n";
+	std::cout << "AC: " << ((unsigned)AC&0xFF) << "\nX:  "  << ((unsigned)X&0xFF) << "\nY:  " << ((unsigned)Y&0xFF) << "\nSP: " << ((unsigned)SP&0xFF) << "\nPC: " << ((unsigned)PC&0xFFFF) << "\nPF: " << ((unsigned)PF&0xFF) << "\n";
 }
 
-void mos6502::run() {
-	while (operations[mem.get_byte(PC)] != nullptr) {
-		std::cout << "PC is " << PC << "\n";
+void mos6502::step() {
+	if (operations[mem.get_byte(PC)] != nullptr) {
 		operations[mem.get_byte(PC)](this, mem.get_byte(PC));
 	}
+}
+
+bool mos6502::op_available() {
+	return operations[mem.get_byte(PC)] != nullptr;
+}
+
+void mos6502::int_push() {
+	push(uint8_t((PC&0xFF00)>>8));
+	push(uint8_t(PC&0xFF));
+	push(PF);
+}
+
+void mos6502::nmi() {
+	int_push();
+	PC = (((uint16_t)mem.get_byte(0xFFFB))<<8)+(uint16_t)mem.get_byte(0xFFFA);
+}
+
+void mos6502::dump() {
 	mem.mem_dump();
 	reg_dump();
 }

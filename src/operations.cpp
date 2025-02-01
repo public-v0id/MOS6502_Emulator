@@ -464,7 +464,6 @@ void RTI(mos6502* cpu, uint8_t ind) {
 	cpu->set_PF(cpu->pull());
 	cpu->PC = cpu->pull();
 	cpu->PC += (uint16_t(cpu->pull()))<<8;
-	cpu->PC += size[ind];
 }
 
 void ADC(mos6502* cpu, uint8_t ind) {
@@ -676,6 +675,8 @@ static bool init = [](){
 	size[0xF5] = 2;
 	size[0xF9] = 3;
 	size[0xFD] = 3;
+	//RTI
+	size[0x40] = 1;
 	//LDA
 	addressing_functions[161] = zpxind;
 	addressing_functions[165] = zp;
@@ -988,5 +989,7 @@ static bool init = [](){
 	operations[0xF5] = SBC;
 	operations[0xF9] = SBC;
 	operations[0xFD] = SBC;
+	//RTI
+	operations[0x40] = RTI;
 	return true;
 }();

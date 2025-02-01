@@ -6,8 +6,8 @@
 class mos6502 {
 	public:
 		mos6502();
-	       	mos6502(uint16_t memsize);
-		mos6502(uint16_t memsize, std::string file);
+	       	mos6502(uint32_t memsize);
+		mos6502(uint32_t memsize, std::string file);
 		int8_t AC;	//Accumulator
 		int8_t X;	//X index
 		int8_t Y;	//Y index
@@ -35,7 +35,11 @@ class mos6502 {
 		void set_PF(uint8_t val);
 		void push(uint8_t val);
 		uint8_t pull();
-		void run();
+		bool op_available();
+		void dump();
+		void step();
+		void int_push();
+		void nmi();
 	private:
 		memory mem;	
 		void reg_dump();

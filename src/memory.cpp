@@ -8,8 +8,8 @@ memory::memory(void) {
 	mem = nullptr;
 }
 
-memory::memory(uint16_t size) {
-	mem = (uint8_t*)calloc(size,sizeof(uint8_t));
+memory::memory(uint32_t size) {
+	mem = new uint8_t[size];
 	if (mem == nullptr) {
 		std::cout << "error initializing memory!\n";
 		return;
@@ -45,7 +45,7 @@ void memory::read_file(std::string file) {
 
 void memory::mem_dump(void) {
 	std::cout << "dumping " << sz << " bytes of memory at " << static_cast<void*>(mem) << "\n";
-	for (uint16_t i = 0; i < sz; ++i) {
+	for (uint32_t i = 0; i < sz; ++i) {
 		std::cout << i << " : " << unsigned(mem[i]) << "\n";
 	}
 }
