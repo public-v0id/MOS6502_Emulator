@@ -38,9 +38,12 @@ class mos6502 {
 		bool op_available();
 		void dump();
 		void step();
-		void int_push();
 		void nmi();
+		void irq();
+		void brk();
 	private:
 		memory mem;	
 		void reg_dump();
+		void int_push_hard();
+		void int_push_soft();
 };

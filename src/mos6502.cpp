@@ -21,7 +21,7 @@ mos6502::mos6502(uint32_t size) : mem(size) {
 	Y = 0;
 	SP = 0xFF;
 	PC = 0;
-	PF = 0;
+	PF = 0x34;
 }
 
 mos6502::mos6502(uint32_t size, std::string file) : mem(size) {
@@ -31,7 +31,7 @@ mos6502::mos6502(uint32_t size, std::string file) : mem(size) {
 	Y = 0;
 	SP = 0xFF;
 	PC = 0;
-	PF = 0x36;
+	PF = 0x34;
 	mem.read_file(file);	
 }
 
@@ -110,7 +110,7 @@ bool mos6502::get_c() {
 }
 
 void mos6502::set_PF(uint8_t val) {
-	PF = val&0xCF;
+	PF = val;
 }
 
 void mos6502::reg_dump() {
@@ -127,14 +127,36 @@ bool mos6502::op_available() {
 	return operations[mem.get_byte(PC)] != nullptr;
 }
 
-void mos6502::int_push() {
+void mos6502::int_push_hard() {
 	push(uint8_t((PC&0xFF00)>>8));
 	push(uint8_t(PC&0xFF));
-	push(PF);
+	push(PF & 0xEF);
+}
+
+void mos6502::int_push_soft() {
+	push(uint8_t((PC&0xFF00)>>8));
+	push(uint8_t(PC&0xFF));
+	push(PF | 0x10);
 }
 
 void mos6502::nmi() {
-	int_push();
+	int_push_hard();
+	set_i_dir(true);
+	PC = (((uint16_t)mem.get_byte(0xFFFB))<<8)+(uint16_t)mem.get_byte(0xFFFA);
+}
+
+void mos6502::irq() {
+	if (get_i()) {
+		return;
+	}	
+	int_push_hard();
+	set_i_dir(true);
+	PC = (((uint16_t)mem.get_byte(0xFFFF))<<8)+(uint16_t)mem.get_byte(0xFFFE);
+}
+
+void mos6502::brk() {
+	int_push_soft();
+	set_i_dir(true);
 	PC = (((uint16_t)mem.get_byte(0xFFFB))<<8)+(uint16_t)mem.get_byte(0xFFFA);
 }
 

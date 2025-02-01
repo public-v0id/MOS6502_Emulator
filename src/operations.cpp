@@ -344,7 +344,7 @@ void PHA(mos6502* cpu, uint8_t ind) {
 }
 
 void PHP(mos6502* cpu, uint8_t ind) {
-	cpu->push(cpu->PF);
+	cpu->push(cpu->PF | 0x10);
 	cpu->PC += size[ind];
 }
 
@@ -356,7 +356,7 @@ void PLA(mos6502* cpu, uint8_t ind) {
 }
 
 void PLP(mos6502* cpu, uint8_t ind) {
-	cpu->PF = cpu->pull();
+	cpu->PF = cpu->pull() & 0xEF;
 	cpu->PC += size[ind];
 }
 
@@ -501,6 +501,11 @@ void SBC(mos6502* cpu, uint8_t ind) {
 	cpu->set_n(res);
 	cpu->AC = res;
 	cpu->PC += size[ind];
+}
+
+void BRK(mos6502* cpu, uint8_t ind) {
+	cpu->PC += size[ind]+1; //1 byte for interrupt reason
+	cpu->brk();	
 }
 
 void (*operations[256])(mos6502*, uint8_t) = {nullptr};
@@ -677,6 +682,8 @@ static bool init = [](){
 	size[0xFD] = 3;
 	//RTI
 	size[0x40] = 1;
+	//BRK
+	size[0x00] = 1;
 	//LDA
 	addressing_functions[161] = zpxind;
 	addressing_functions[165] = zp;
@@ -991,5 +998,7 @@ static bool init = [](){
 	operations[0xFD] = SBC;
 	//RTI
 	operations[0x40] = RTI;
+	//BRK
+	operations[0x00] = BRK;
 	return true;
 }();

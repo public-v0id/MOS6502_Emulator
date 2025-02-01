@@ -6,6 +6,7 @@ int main() {
 	char cmd = ' ';
 	std::cout << "Input command ('R' to run all operations until the end, 'C' to run a single step, 'I' for an IRQ and 'N' for an NMI):\n";
 	std::cin >> cmd;
+	bool irq = false, nmi = false;
 	while (mos.op_available()) {
 		switch (cmd) {
 			case 'C':
@@ -15,15 +16,17 @@ int main() {
 				std::cin >> cmd;
 				break;
 			case 'R':
-				mos.step();
+				mos.step();	
 				break;
 			case 'I':
+				mos.irq();
+				mos.dump();
 				std::cout << "Input command ('R' to run all operations until the end, 'C' to run a single step, 'I' for an IRQ and 'N' for an NMI):\n";
 				std::cin >> cmd;
 				break;
 			case 'N':
 				mos.nmi();
-//				mos.dump();
+				mos.dump();
 				std::cout << "Input command ('R' to run all operations until the end, 'C' to run a single step, 'I' for an IRQ and 'N' for an NMI):\n";
 				std::cin >> cmd;
 				break;
